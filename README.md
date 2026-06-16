@@ -38,7 +38,7 @@ From the **`bagisto-api`** capability:
 
 ```bash
 git clone https://github.com/bagisto/mcp    # or however you obtain this repo
-cd Api-MCP
+cd mcp
 npm install
 ```
 
@@ -49,7 +49,7 @@ npm install
 The command needs the **absolute path to `src/index.mjs` in this repo** — not a placeholder. The easiest, typo-proof way is to run it **from inside the cloned repo** and let the shell fill the path in with `$(pwd)`:
 
 ```bash
-cd /path/to/Api-MCP          # the folder you cloned (where this README lives)
+cd /path/to/mcp          # the folder you cloned (where this README lives)
 
 claude mcp add bagisto-mcp -- node "$(pwd)/src/index.mjs"
 ```
@@ -58,7 +58,7 @@ Prefer an explicit path? Replace `<ABSOLUTE_PATH_TO_REPO>` with your real folder
 
 ```bash
 claude mcp add bagisto-mcp -- node <ABSOLUTE_PATH_TO_REPO>/src/index.mjs
-# e.g.  node /home/me/projects/Api-MCP/src/index.mjs
+# e.g.  node /home/me/projects/mcp/src/index.mjs
 ```
 
 **Verify:**
@@ -70,7 +70,7 @@ claude mcp list              # expect:  bagisto-mcp  …  ✓ Connected
 > **Seeing `✗ Failed to connect`?** The path is wrong — almost always because the placeholder (`<ABSOLUTE_PATH_TO_REPO>` or a literal `/absolute/path/to/...`) was left in, so Node can't find the file. Remove it and re-add with the `$(pwd)` form above:
 > ```bash
 > claude mcp remove bagisto-mcp
-> cd /path/to/Api-MCP && claude mcp add bagisto-mcp -- node "$(pwd)/src/index.mjs"
+> cd /path/to/mcp && claude mcp add bagisto-mcp -- node "$(pwd)/src/index.mjs"
 > ```
 
 Then in a session, just ask normally — e.g. *"use search_api_docs to find the place-order endpoint"*, or simply *"build a checkout flow"* (the shop skill + this MCP work together).
@@ -96,7 +96,7 @@ args = ["<ABSOLUTE_PATH_TO_REPO>/src/index.mjs"]
 Recent Codex builds can also add it straight from the CLI (run from inside the cloned repo so `$(pwd)` fills the path):
 
 ```bash
-cd /path/to/Api-MCP
+cd /path/to/mcp
 codex mcp add bagisto-mcp -- node "$(pwd)/src/index.mjs"
 codex mcp list                 # expect:  bagisto-mcp
 ```
@@ -118,7 +118,7 @@ Most clients read a JSON config (Cursor: `~/.cursor/mcp.json` or a project `.cur
 }
 ```
 
-Replace `<ABSOLUTE_PATH_TO_REPO>` with your real folder (e.g. `/home/me/projects/Api-MCP`). To pin/override the docs source, add an `"env": { "BAGISTO_DOCS_LLMS": "<url-or-file>" }` block — see [corpus source](#where-it-gets-the-docs-corpus-source).
+Replace `<ABSOLUTE_PATH_TO_REPO>` with your real folder (e.g. `/home/me/projects/mcp`). To pin/override the docs source, add an `"env": { "BAGISTO_DOCS_LLMS": "<url-or-file>" }` block — see [corpus source](#where-it-gets-the-docs-corpus-source).
 
 > **VS Code** uses a slightly different shape — `"servers"` (not `"mcpServers"`) with `"type": "stdio"`, in `.vscode/mcp.json` — but the same `command` + `args`.
 
